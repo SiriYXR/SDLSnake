@@ -2,15 +2,15 @@
 
 namespace siri {
 
-	SIRI_Button::SIRI_Button(SIRI_Window * win, SDL_Rect rect, SDL_Texture* img, string * text, string* fontfile, SDL_Color * color, int shadowSize, SDL_Color * shadowColor) : m_win(win), m_img(img)
+	SIRI_Button::SIRI_Button(SIRI_Window * win, SDL_Rect rect, SDL_Texture* img, const std::string &message, const std::string &fontFile, SDL_Color * color, int shadowSize, SDL_Color * shadowColor) : m_win(win), m_img(img)
 	{
 		m_rect.x = rect.x;
 		m_rect.y = rect.y;
 		m_rect.w = rect.w;
 		m_rect.h = rect.h;
 
-		m_text = text;
-		m_fontFile = fontfile;
+		m_text = message;
+		m_fontFile = fontFile;
 
 		if (NULL == color) {
 			m_color.r = 255;
@@ -41,12 +41,17 @@ namespace siri {
 			m_shadowColor.a = shadowColor->a;
 		}
 
+		m_fontColor.r = 0;
+		m_fontColor.g = 0;
+		m_fontColor.b = 0;
+		m_fontColor.a = 255;
+
 		m_isOn = false;
 		m_isHiden = false;
 		m_isShadowHiden = false;
 	}
 
-	SIRI_Button::SIRI_Button(SIRI_Window * win, SIRI_Rect rect, SDL_Texture * img, string * text, string* fontfile, SDL_Color * color, int shadowSize, SDL_Color * shadowColor) : m_win(win), m_img(img)
+	SIRI_Button::SIRI_Button(SIRI_Window * win, SIRI_Rect rect, SDL_Texture * img, const std::string &message , const std::string &fontFile , SDL_Color * color, int shadowSize, SDL_Color * shadowColor) : m_win(win), m_img(img)
 	{
 		m_rect.x = rect.getX();
 		m_rect.y = rect.getY();
@@ -54,8 +59,8 @@ namespace siri {
 		m_rect.h = rect.getH();
 
 
-		m_text = text;
-		m_fontFile = fontfile;
+		m_text = message;
+		m_fontFile = fontFile;
 
 		if (NULL == color) {
 			m_color.r = 255;
@@ -85,6 +90,11 @@ namespace siri {
 			m_shadowColor.b = shadowColor->b;
 			m_shadowColor.a = shadowColor->a;
 		}
+
+		m_fontColor.r = 0;
+		m_fontColor.g = 0;
+		m_fontColor.b = 0;
+		m_fontColor.a = 255;
 
 		m_isOn = false;
 		m_isHiden = false;
@@ -121,8 +131,8 @@ namespace siri {
 				m_win->Draw(m_img, m_rect.x, m_rect.y);
 			}
 
-			if (m_fontFile&&m_text)
-				m_win->RenderText(*m_text, *m_fontFile, 20, SDL_Color{ 0,0,0 });
+			if (m_fontFile.size() && m_text.size())
+				m_win->RenderText(m_text, m_fontFile, m_rect.x, m_rect.y, 20, m_fontColor);
 		}
 	}
 

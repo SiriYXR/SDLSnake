@@ -19,18 +19,19 @@ namespace siri {
 		SDL_Rect m_rect;
 		SDL_Color m_color;
 		SDL_Texture* m_img;
-		string* m_text;
-		string* m_fontFile;
+		string m_text;
+		string m_fontFile;
 
 		int m_shadowSize;
 		SDL_Color m_shadowColor;
+		SDL_Color m_fontColor;
 
 		bool m_isOn;
 		bool m_isHiden;
 		bool m_isShadowHiden;
 	public:
-		SIRI_Button(SIRI_Window* win, SDL_Rect rect, SDL_Texture* img = NULL, string* text = NULL, string* fontfile = NULL, SDL_Color* color = NULL, int shadowSize = 2, SDL_Color* shadowColor = NULL);
-		SIRI_Button(SIRI_Window* win, SIRI_Rect rect, SDL_Texture* img = NULL, string* text = NULL, string* fontfile = NULL, SDL_Color* color = NULL, int shadowSize = 2, SDL_Color* shadowColor = NULL);
+		SIRI_Button(SIRI_Window* win, SDL_Rect rect, SDL_Texture* img = NULL, const std::string &message="", const std::string &fontFile="", SDL_Color* color = NULL, int shadowSize = 2, SDL_Color* shadowColor = NULL);
+		SIRI_Button(SIRI_Window* win, SIRI_Rect rect, SDL_Texture* img = NULL, const std::string &message = "", const std::string &fontFile = "", SDL_Color* color = NULL, int shadowSize = 2, SDL_Color* shadowColor = NULL);
 		~SIRI_Button();
 
 		void update();

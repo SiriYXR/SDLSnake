@@ -38,6 +38,7 @@ void menuScene::event()
 
 		m_starGameButton->event(&events);
 		m_aboutUsButton->event(&events);
+
 	}
 }
 

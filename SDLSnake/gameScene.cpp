@@ -482,7 +482,7 @@ bool gameScene::isSnakeDead()
 			}
 	}
 	else {
-		if (m_snake[0]->isCanMove() && m_snake[1]->isCanMove()) {
+		/*if (m_snake[0]->isCanMove() && m_snake[1]->isCanMove()) {*/
 			if (isEatOthers(m_snake[1], m_snake[0]) && isEatOthers(m_snake[0], m_snake[1])) {
 				m_state = DEAD;
 				m_deadFor = NOTHING;
@@ -513,7 +513,7 @@ bool gameScene::isSnakeDead()
 					m_snake[1]->rollBack();
 				}
 			}
-		}
+	/*	}
 		else if (m_snake[0]->isCanMove())
 			if (isEatSelf(m_snake[0]) || isOutMap(m_snake[0]) || isEatOthers(m_snake[0], m_snake[1])) {
 				m_state = DEAD;
@@ -526,7 +526,7 @@ bool gameScene::isSnakeDead()
 				m_deadFor = P1WIN;
 				m_snake[1]->rollBack();
 			}
-		
+		*/
 	}
 	
 	if (m_state == DEAD) {
@@ -534,6 +534,7 @@ bool gameScene::isSnakeDead()
 			m_win->mMusic->dead->play();
 		return true;
 	}
+
 	return false;
 }
 
