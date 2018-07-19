@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="源文件\loop">
+      <UniqueIdentifier>{a7567c36-d9d5-4a78-9b62-010ff7a5e099}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\SiriGUI">
+      <UniqueIdentifier>{d473394e-ca60-4fc1-b763-c71181518370}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="头文件\scene">
+      <UniqueIdentifier>{b4870f97-8480-47e2-87d7-fb54cc4179f3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\scene">
+      <UniqueIdentifier>{73895368-93ff-46ba-98b6-f20a196c4fbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件\SiriGUI">
+      <UniqueIdentifier>{4ab38896-656d-4524-b0c8-edd7cd960dc2}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="mainloop.cpp">
+      <Filter>源文件\loop</Filter>
+    </ClCompile>
+    <ClCompile Include="menuScene.cpp">
+      <Filter>源文件\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="choiceScene.cpp">
+      <Filter>源文件\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="choiceloop.cpp">
+      <Filter>源文件\loop</Filter>
+    </ClCompile>
+    <ClCompile Include="gameloop.cpp">
+      <Filter>源文件\loop</Filter>
+    </ClCompile>
+    <ClCompile Include="gameScene.cpp">
+      <Filter>源文件\scene</Filter>
+    </ClCompile>
+    <ClCompile Include="function.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="SIRI_Button.cpp">
+      <Filter>源文件\SiriGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SIRI_Functions.cpp">
+      <Filter>源文件\SiriGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SIRI_Graphics.cpp">
+      <Filter>源文件\SiriGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SIRI_Music.cpp">
+      <Filter>源文件\SiriGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SIRI_Point.cpp">
+      <Filter>源文件\SiriGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SIRI_Rect.cpp">
+      <Filter>源文件\SiriGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SIRI_Size.cpp">
+      <Filter>源文件\SiriGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SIRI_Window.cpp">
+      <Filter>源文件\SiriGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="SIRI_Image.cpp">
+      <Filter>源文件\SiriGUI</Filter>
+    </ClCompile>
+    <ClCompile Include="Snake.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="aboutusloop.cpp">
+      <Filter>源文件\loop</Filter>
+    </ClCompile>
+    <ClCompile Include="aboutusScene.cpp">
+      <Filter>源文件\scene</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="function.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="menuScene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="choiceScene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="gameScene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SIRI_Button.h">
+      <Filter>头文件\SiriGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SIRI_Functions.h">
+      <Filter>头文件\SiriGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SIRI_Graphics.h">
+      <Filter>头文件\SiriGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SIRI_GUI.h">
+      <Filter>头文件\SiriGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SIRI_Music.h">
+      <Filter>头文件\SiriGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SIRI_Point.h">
+      <Filter>头文件\SiriGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SIRI_Rect.h">
+      <Filter>头文件\SiriGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SIRI_Size.h">
+      <Filter>头文件\SiriGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SIRI_Window.h">
+      <Filter>头文件\SiriGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="SIRI_Image.h">
+      <Filter>头文件\SiriGUI</Filter>
+    </ClInclude>
+    <ClInclude Include="Snake.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="aboutusScene.h">
+      <Filter>头文件\scene</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
