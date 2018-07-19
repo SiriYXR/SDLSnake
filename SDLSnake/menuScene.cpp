@@ -2,6 +2,7 @@
 
 menuScene::menuScene(SIRI_Window *win):win(win)
 {
+	//实例化按钮对象
 	m_starGameButton = new SIRI_Button(win, SIRI_Rect(250,410, win->mImage->switch_startgame), win->mImage->switch_startgame);
 	m_aboutUsButton = new SIRI_Button(win, SIRI_Rect( 550, 410,win->mImage->aboutus_button ),win->mImage->aboutus_button);
 
@@ -19,7 +20,7 @@ void menuScene::event()
 	while (SDL_PollEvent(&events))
 	{
 		//If user closes the window
-		if (events.type == SDL_QUIT)
+		if (events.type == SDL_QUIT)//窗口事件
 		{
 			isover = true;
 			isescape = true;
@@ -48,14 +49,15 @@ void menuScene::update()
 
 void menuScene::rend()
 {
-	win->Clear();
+	win->Clear();//清空窗口中的图像
 
 	rend_background();
 
+	//渲染按钮
 	m_starGameButton->render();
 	m_aboutUsButton->render();
 
-	win->Present();
+	win->Present();//显示窗口中的图像
 }
 
 bool menuScene::isOver()
@@ -77,8 +79,8 @@ void menuScene::mouseEvent()
 	if (events.button.button == SDL_BUTTON_LEFT) {
 			if (m_starGameButton->isOn())
 			{
-				win->mMusic->click->play();
-				if (choiceloop(win)) {
+				win->mMusic->click->play();//播放按钮音效
+				if (choiceloop(win)) {//进入模式选择场景
 					isover = true;
 					isescape = true;
 				}
@@ -87,7 +89,7 @@ void menuScene::mouseEvent()
 			if (m_aboutUsButton->isOn())
 			{
 				win->mMusic->click->play();
-				if (aboutusloop(win)) {
+				if (aboutusloop(win)) {//进入开发人员名单场景
 					isover = true;
 					isescape = true;
 				}

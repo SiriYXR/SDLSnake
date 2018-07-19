@@ -103,7 +103,8 @@ void gameScene::init()
 
 		m_score[0] = 0;
 		m_score[1] = 0;
-		m_highestScore = readScore(ScoreFile);
+		m_highestScore = readScore(ScoreFile);//读取历史最高分
+
 
 		m_snake[0] = new Snake(m_win, SIRI_Point(200, 280), 0);
 		if (m_mod == 1) {
@@ -112,13 +113,15 @@ void gameScene::init()
 		else
 		{
 			m_snake[1] = new Snake(m_win, SIRI_Point(320, 280), 2);
+			//禁用双人模式下蛇加速的模式
 			m_snake[0]->setAccelerate(false);
 			m_snake[1]->setAccelerate(false);
 		}
 
+		//清空上一局的食物
 		if (!m_food.empty())
 			m_food.pop_front();
-		updateCreatFood();
+		updateCreatFood();//生成新的食物
 	}
 }
 
@@ -133,6 +136,7 @@ void gameScene::updateButton()
 		m_unmuteButton->setIsHiden(false);
 	}
 
+	//根据游戏状态隐藏或显示相应的按钮
 	switch (m_state)
 	{
 	case RUNNING:
@@ -157,8 +161,9 @@ void gameScene::updateButton()
 
 void gameScene::updateSnake()
 {
+	//如果处于运行状态则更新蛇
 	if (m_state == RUNNING) {
-		if (!isSnakeDead()) {
+		if (!isSnakeDead()) {//判定蛇是否死亡
 			m_snake[0]->update();
 			if (m_mod == 2) {
 				m_snake[1]->update();
@@ -170,7 +175,7 @@ void gameScene::updateSnake()
 void gameScene::updateCreatFood()
 {
 	while (m_food.size() < 5) {
-		int x = 20 + SIRI_Rand(24) * 20;
+		int x = 20 + SIRI_Rand(24) * 20;//根据随机数生成食物坐标
 		int y = 20 + SIRI_Rand(24) * 20;
 		bool flag = true;
 		for (int i = 0; i < 2; i++)
@@ -186,20 +191,20 @@ void gameScene::updateEatFood()
 {
 	for (int i = 0; i < 2; i++) {
 		if (m_snake[i]) {
-			int size = m_food.size();
-			for (int j = 0; j < size; j++) {
-				SIRI_Point point(m_food.front().getX(), m_food.front().getY());
-				m_food.pop_front();
-				if (point.getX() == m_snake[i]->getHeadPoint().getX() && point.getY() == m_snake[i]->getHeadPoint().getY()) {
-					if (!ismute)
+			int size = m_food.size();//获取食物个数
+			for (int j = 0; j < size; j++) {//遍历食物
+				SIRI_Point point(m_food.front().getX(), m_food.front().getY());//获取食物位置
+				m_food.pop_front();//将第一个食物出队
+				if (point.getX() == m_snake[i]->getHeadPoint().getX() && point.getY() == m_snake[i]->getHeadPoint().getY()) {//如果食物与蛇头重合
+					if (!ismute)//根据静音状态判断是否调用相应音效
 						m_win->mMusic->eat->play();
-					m_score[i]++;
-					m_snake[i]->grow();
-					if (m_score[i] % 10 == 0)
-						m_snake[i]->speedUp();
+					m_score[i]++;//分数增加
+					m_snake[i]->grow();//蛇身生长
+					if (m_score[i] % 10 == 0)//如果分数为10的倍数
+						m_snake[i]->speedUp();//速度加快
 				}
 				else
-					m_food.push_back(point);
+					m_food.push_back(point);//如果不重合，则队尾入队
 			}
 		}
 	}
@@ -319,7 +324,7 @@ void gameScene::rendPlayerName()
 			SIRI_Point point = m_snake[i]->getHeadPoint();
 			char str[20];
 			sprintf(str, "Player%d", i+1);
-			m_win->RenderText(str, Font_kaiti, point.getX(), point.getY()-20, 20);
+			m_win->RenderText(str, Font_kaiti, point.getX(), point.getY()-20, 20);//打印蛇的名字，偏移到蛇头上方20像素的位置
 		}
 		
 	}
@@ -559,6 +564,6 @@ bool gameScene::isEatSelf(Snake * snake)
 
 bool gameScene::isEatOthers(Snake * s1, Snake * s2)
 {
-	return s2->isOnBody(s1->getHeadPoint());
+	return s2->isOnBody(s1->getHeadPoint());//通过s1头结点位置判定是否与s2蛇身重合
 }
 

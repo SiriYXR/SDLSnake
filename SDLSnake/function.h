@@ -26,5 +26,5 @@ bool aboutusloop(SIRI_Window *win);
 void openVideo(SIRI_Window *win);
 void endVideo(SIRI_Window *win);
 
-void saveScore(string file,int score);
-int readScore(string file);
+void saveScore(string file,int score);//存储分数
+int readScore(string file);//读取分数

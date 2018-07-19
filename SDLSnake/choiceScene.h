@@ -18,7 +18,7 @@ private:
 	void keyEvent();
 
 	void rend_background();
-	void rend_dir();
+	void rend_dir();//渲染选择光标
 
 private:
 	SIRI_Window *win;
@@ -27,7 +27,7 @@ private:
 	SIRI_Button* m_singlGameButton;
 	SIRI_Button* m_doubleGameButton;
 
-	SIRI_Point m_dir;
+	SIRI_Point m_dir;//光标
 
 	bool isover;
 	bool isescape;

@@ -16,13 +16,13 @@
 
 int main(int argc, char **argv)
 {
-	SIRI_Window *window = new SIRI_Window();
-	window->Init(u8"SDL Snake", Win_L, Win_H);//添加u8以支持中文
-	openVideo(window);
-	mainloop(window);
-	endVideo(window);
-	window->Quit();
-	delete window;
+	SIRI_Window *window = new SIRI_Window();//实例化窗口对象
+	window->Init(u8"SDL Snake", Win_L, Win_H);//初始化窗口为WinLXWin_H大小，添加u8以支持中文
+	openVideo(window);//开场动画
+	mainloop(window);//进入主界面循环
+	endVideo(window);//退出动画
+	window->Quit();//关闭窗口
+	delete window;//销毁窗口对象
 
 	return 0;
 }

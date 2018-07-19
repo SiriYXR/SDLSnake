@@ -41,7 +41,7 @@ Snake::Snake(SIRI_Window * win, SIRI_Point point, int direction)
 		}
 	}
 
-	m_isCanAccelerate = true;
+	m_isCanAccelerate = true;//默认可以加速
 	m_accelerate = 0;
 }
 
@@ -61,7 +61,7 @@ void Snake::update()
 	updateHeadDir();
 	updateMove();
 	updateHeadPoint();
-	if (m_accelerate)
+	if (m_accelerate)//更新加速计数器
 		m_accelerate--;
 	
 }
@@ -71,7 +71,7 @@ void Snake::render()
 	Node* p;
 	p = m_nodeHead->next;
 	while (p != m_nodeTail) {
-		if (p == m_nodeHead->next) {
+		if (p == m_nodeHead->next) {//根据方向打印蛇头
 			switch (p->direction)
 			{
 			case 0:
@@ -90,7 +90,7 @@ void Snake::render()
 				break;
 			}
 		}
-		else if (p == m_nodeTail->prev) {
+		else if (p == m_nodeTail->prev) {//根据方向打印蛇尾
 			switch (p->direction)
 			{
 			case 0:
@@ -109,7 +109,7 @@ void Snake::render()
 				break;
 			}
 		}
-		else
+		else//打印身体
 		{
 			m_win->Draw(m_win->mImage->body, p->x, p->y);
 		}
@@ -120,12 +120,12 @@ void Snake::render()
 
 void Snake::putKey(int key)
 {
-	if (key == m_headDir) {
-		if(m_isCanAccelerate)
-			m_accelerate = 2;
+	if (key == m_headDir) {//如果操作指令和蛇头方向一样
+		if(m_isCanAccelerate)//且可以加速的话
+			m_accelerate = 2;//更新加速计数器
 		return;
 	}
-	if (m_key.size() < 3)
+	if (m_key.size() < 3)//如果操作指令链表不超过3，将操作指令加入操作指令链表
 		m_key.push_back(key);
 }
 
@@ -174,12 +174,14 @@ void Snake::grow()
 
 bool Snake::isEatSelf()
 {
+	//获取蛇头位置
 	int x = getHeadPoint().getX();
 	int y = getHeadPoint().getY();
+	//跳过蛇头遍历之后的所有蛇身
 	Node* p;
 	p = m_nodeHead->next->next;
 	while (p != m_nodeTail) {
-		if (p->x == x&&p->y == y)
+		if (p->x == x&&p->y == y)//如果和蛇身任意一个结点重合就判定为真
 			return true;
 		p = p->next;
 	}
@@ -255,13 +257,14 @@ void Snake::clear()
 void Snake::updateCount()
 {
 
-	if (m_count > 20)
+	if (m_count > 20)//如果计数器超过20则清零
 		m_count = 0;
-	if(m_accelerate)
+	if(m_accelerate)//如果加速状态不为0，则计数器加速计时
 		m_count += m_speed+5;
 	m_count += m_speed;
 }
 
+//从尾部向头遍历蛇身结点，每个结点复制前一个结点的状态，直到头结点根据自身方向计算新的位置，以实现蛇向前移动一步的效果。
 void Snake::updateMove()
 {
 	if (isCanMove()) {
@@ -282,10 +285,10 @@ void Snake::updateMove()
 void Snake::updateHeadDir()
 {
 	if (isCanMove()) {
-		if (!m_key.empty()) {
+		if (!m_key.empty()) {//如果指令链表不为空，取第一个操作指令，否则保持原有方向
 			int k = m_key.front();
 			m_key.pop_front();
-			switch (m_headDir)
+			switch (m_headDir)//如果指令方向和现有方向垂直则更新现有方向
 			{
 			case 0:
 			case 2:
@@ -312,9 +315,10 @@ void Snake::updateHeadPoint()
 
 bool Snake::isCanMove()
 {
-	return m_count > 20 ? true : false;
+	return m_count > 20 ? true : false;//如果计数器超过20则可以移动
 }
 
+//从头部向后遍历，每个结点复制后一个结点的状态，直到尾部结点根据方向更新位置，以实现蛇向后倒退一步的效果。特别地，蛇头方向保留不做改变
 void Snake::rollBack()
 {
 	Node* p;
@@ -339,7 +343,7 @@ void Snake::speedUp()
 		m_speed += 0.2;
 }
 
-void Snake::setAccelerate(bool iscan)
+void Snake::setAccelerate(bool iscan)//设置加速状态
 {
 	m_isCanAccelerate = iscan;
 }

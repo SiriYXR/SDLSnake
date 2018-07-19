@@ -45,12 +45,12 @@ void endVideo(SIRI_Window *win)
 
 void saveScore(string file,int score)
 {
-	fstream ofs;
+	fstream ofs;//实例化文件输出流
 	ofs.open(file,ios::out);
 	if (!ofs)
-		throw std::runtime_error(file + " open failed!");
-	ofs << score;
-	ofs.close();
+		throw std::runtime_error(file + " open failed!");//若文件打开失败则抛出异常
+	ofs << score;//向文件输出分数
+	ofs.close();//关闭文件流
 }
 
 int readScore(string file)
@@ -61,6 +61,7 @@ int readScore(string file)
 		throw std::runtime_error(file + " open failed!");
 	int score=0;
 	ifs >> score;
+	ifs.close();
 
 	return score;
 }

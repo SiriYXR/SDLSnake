@@ -6,6 +6,7 @@ choiceScene::choiceScene(SIRI_Window * win) :win(win)
 	m_singlGameButton = new SIRI_Button(win, SIRI_Rect(120, 410, win->mImage->switch_oneplayer), win->mImage->switch_oneplayer);
 	m_doubleGameButton = new SIRI_Button(win, SIRI_Rect(440, 410, win->mImage->switch_twoplayer), win->mImage->switch_twoplayer);
 
+	//初始化光标坐标
 	m_dir.setX(50);
 	m_dir.setY(415);
 
@@ -36,6 +37,7 @@ void choiceScene::event()
 
 		if (events.type == SDL_MOUSEMOTION)
 		{
+			//根据鼠标移动更新光标位置
 			if (m_singlGameButton->isOn())
 				m_dir.setX(50);
 			if (m_doubleGameButton->isOn())
@@ -90,7 +92,7 @@ void choiceScene::mouseEvent()
 		
 		if (m_singlGameButton->isOn()) {
 			win->mMusic->click->play();
-			if (gameloop(win, 1)) {
+			if (gameloop(win, 1)) {//进入单人游戏模式
 				isover = true;
 				isescape = true;
 			}
@@ -98,7 +100,7 @@ void choiceScene::mouseEvent()
 
 		if (m_doubleGameButton->isOn()) {
 			win->mMusic->click->play();
-			if (gameloop(win, 2)) {
+			if (gameloop(win, 2)) {//进入双人游戏模式
 				isover = true;
 				isescape = true;
 			}
@@ -112,7 +114,7 @@ void choiceScene::keyEvent()
 	{
 	case SDLK_a:
 	case SDLK_LEFT:
-		if (m_dir.getX() != 50)
+		if (m_dir.getX() != 50)//根据按键更新光标位置
 			m_dir.setX(50);
 		break;
 	case SDLK_d:
@@ -120,7 +122,7 @@ void choiceScene::keyEvent()
 		if (m_dir.getX() != 370)
 			m_dir.setX(370);
 		break;
-	case SDLK_SPACE:
+	case SDLK_SPACE://选中光标所在位置
 	case SDLK_KP_ENTER:
 	case SDLK_RETURN:
 		if (m_dir.getX() == 50) {
